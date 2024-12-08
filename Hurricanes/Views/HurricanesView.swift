@@ -25,7 +25,7 @@ struct HurricanesView: View {
         NavigationStack {
             List {
                 // Two-Day Weather Outlook
-                Section("Two-Day Weather Outlook") {
+                Section {
                     AsyncImage(url: URL(string: outlookImage + "2d0.png")) { status in
                         switch status {
                         case .failure:
@@ -49,11 +49,13 @@ struct HurricanesView: View {
                             ProgressView()
                         }
                     }
+                } header: {
+                    Text("Two-Day Weather Outlook")
+                        .sectionHeaderStyle()
                 }
-                .sectionHeaderStyle()
                 
                 // Seven-Day Weather Outlook
-                Section("Seven-Day Weather Outlook") {
+                Section {
                     AsyncImage(url: URL(string: outlookImage + "7d0.png")) { status in
                         switch status {
                         case .failure:
@@ -77,8 +79,10 @@ struct HurricanesView: View {
                             ProgressView()
                         }
                     }
+                } header: {
+                    Text("Seven-Day Weather Outlook")
+                        .sectionHeaderStyle()
                 }
-                .sectionHeaderStyle()
                 
                 // Outlook Text
                 Section {
@@ -104,10 +108,10 @@ struct HurricanesView: View {
                     .onChange(of: currentTab) {
                         switch currentTab {
                         case .centralPacific:
-                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_pac_"
+                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_cpac_"
                             queryParameters = "?basin=cpac"
                         case .easternPacific:
-                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_cpac_"
+                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_pac_"
                             queryParameters = "?basin=epac"
                         case .atlantic:
                             outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_atl_"
