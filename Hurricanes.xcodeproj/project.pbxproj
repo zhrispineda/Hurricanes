@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		836744932D05517F00167925 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 836744922D05517F00167925 /* README.md */; };
 		83F9A0F82D04C90D004F0400 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 83F9A0F72D04C90D004F0400 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +22,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		836744922D05517F00167925 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8387F0D42D04C1C500B26DD8 /* Hurricanes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hurricanes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B3F3442D0538870038F77A /* HurricanesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HurricanesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -60,6 +62,7 @@
 		8387F0CB2D04C1C500B26DD8 = {
 			isa = PBXGroup;
 			children = (
+				836744922D05517F00167925 /* README.md */,
 				8387F0D62D04C1C500B26DD8 /* Hurricanes */,
 				83B3F3452D0538870038F77A /* HurricanesTests */,
 				8387F0D52D04C1C500B26DD8 /* Products */,
@@ -171,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836744932D05517F00167925 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

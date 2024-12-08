@@ -25,7 +25,7 @@ struct HurricanesView: View {
         NavigationStack {
             List {
                 // Two-Day Weather Outlook
-                Section {
+                Section("Two-Day Weather Outlook") {
                     AsyncImage(url: URL(string: outlookImage + "2d0.png")) { status in
                         switch status {
                         case .failure:
@@ -49,13 +49,11 @@ struct HurricanesView: View {
                             ProgressView()
                         }
                     }
-                } header: {
-                    Text("Two-Day Weather Outlook")
-                        .sectionHeaderStyle()
                 }
+                .sectionHeaderStyle()
                 
                 // Seven-Day Weather Outlook
-                Section {
+                Section("Seven-Day Weather Outlook") {
                     AsyncImage(url: URL(string: outlookImage + "7d0.png")) { status in
                         switch status {
                         case .failure:
@@ -79,10 +77,8 @@ struct HurricanesView: View {
                             ProgressView()
                         }
                     }
-                } header: {
-                    Text("Seven-Day Weather Outlook")
-                        .sectionHeaderStyle()
                 }
+                .sectionHeaderStyle()
                 
                 // Outlook Text
                 Section {
@@ -96,6 +92,7 @@ struct HurricanesView: View {
                         .sectionHeaderStyle()
                 }
             }
+            .listStyle(.inset)
             .navigationTitle("Hurricanes")
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {

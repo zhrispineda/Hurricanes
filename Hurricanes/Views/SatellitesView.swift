@@ -8,6 +8,7 @@ import os
 
 struct SatellitesView: View {
     // Variables
+    @Environment(\.openURL) var openURL
     let hurricanesHelper = HurricanesHelper()
     let logger = Logger(subsystem: "Hurricanes", category: "SatellitesView")
     
@@ -33,6 +34,11 @@ struct SatellitesView: View {
                                     } label: {
                                         Label("Copy", systemImage: "doc.on.doc")
                                     }
+                                    Button {
+                                        openURL(URL(string: "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/taw/GEOCOLOR/GOES16-TAW-GEOCOLOR-900x540.gif")!)
+                                    } label: {
+                                        Label("Open GIF", systemImage: "photo")
+                                    }
                                 }
                         default:
                             ProgressView()
@@ -40,10 +46,11 @@ struct SatellitesView: View {
                     }
                 } header: {
                     Text("GEOCOLOR")
-                        .sectionHeaderStyle()
                 }
+                .sectionHeaderStyle()
             }
             .navigationTitle("Satellites")
+            .listStyle(.inset)
         }
     }
 }

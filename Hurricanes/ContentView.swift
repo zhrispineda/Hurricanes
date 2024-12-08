@@ -22,10 +22,10 @@ struct ContentView: View {
                 SatellitesView()
             }
             Tab("Information", systemImage: "text.document.fill", value: .information) {
-                EmptyView()
+                InformationView()
             }
             Tab("Settings", systemImage: "gear", value: .settings) {
-                EmptyView()
+                SettingsView()
             }
         }
     }
