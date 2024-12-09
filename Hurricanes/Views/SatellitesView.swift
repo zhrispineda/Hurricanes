@@ -45,7 +45,7 @@ struct SatellitesView: View {
                         }
                     }
                 } header: {
-                    Text("GEOCOLOR")
+                    Text("Atlantic GEOCOLOR")
                 }
                 .sectionHeaderStyle()
             }
