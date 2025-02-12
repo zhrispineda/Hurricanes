@@ -18,12 +18,15 @@ struct ContentView: View {
             Tab("Hurricanes", systemImage: "hurricane", value: .hurricanes) {
                 HurricanesView()
             }
+            
             Tab("Satellites", systemImage: "arrow.triangle.2.circlepath.icloud.fill", value: .satellites) {
                 SatellitesView()
             }
+            
             Tab("Information", systemImage: "text.document.fill", value: .information) {
                 InformationView()
             }
+            
             Tab("Settings", systemImage: "gear", value: .settings) {
                 SettingsView()
             }
