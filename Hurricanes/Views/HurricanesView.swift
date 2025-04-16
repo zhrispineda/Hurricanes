@@ -115,7 +115,7 @@ struct HurricanesView: View {
                             queryParameters = String() // No parameters
                         }
                         hurricanesHelper.getProductText(resource: "https://www.nhc.noaa.gov/gtwo.php" + queryParameters) { text in
-                            DispatchQueue.main.async {
+                            Task {
                                 outlookText = text
                             }
                         }
@@ -126,7 +126,7 @@ struct HurricanesView: View {
         .task {
             // Outlook Text
             hurricanesHelper.getProductText(resource: "https://www.nhc.noaa.gov/gtwo.php" + queryParameters) { text in
-                DispatchQueue.main.async {
+                Task {
                     outlookText = text
                 }
             }
