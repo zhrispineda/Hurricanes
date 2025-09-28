@@ -6,7 +6,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Variables
     @State private var currentTab: Tabs = .hurricanes
     
     enum Tabs {

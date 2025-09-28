@@ -5,6 +5,7 @@
 
 import SwiftUI
 
+/// - Warning: Do not use this method for loading animated images as it is private. Consider other public alternatives.
 struct PFAnimatedImage: UIViewRepresentable {
     let data: Data
     
@@ -32,6 +33,7 @@ struct PFAnimatedImage: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
+/// - Warning: Do not use this method for loading animated images as it is private. Consider other public alternatives.
 struct PFAnimatedImageLoader: View {
     let link: String
     @State private var data: Data? = nil

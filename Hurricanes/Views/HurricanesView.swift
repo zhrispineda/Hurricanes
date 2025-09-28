@@ -92,33 +92,36 @@ struct HurricanesView: View {
                         .sectionHeaderStyle()
                 }
             }
-            .listStyle(.inset)
             .navigationTitle("Hurricanes")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    Picker("Picker", selection: $currentTab) {
-                        Text("Central Pacific").tag(Tab.centralPacific)
-                        Text("Eastern Pacific").tag(Tab.easternPacific)
-                        Text("Atlantic").tag(Tab.atlantic)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .onChange(of: currentTab) {
-                        switch currentTab {
-                        case .centralPacific:
-                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_cpac_"
-                            queryParameters = "?basin=cpac"
-                        case .easternPacific:
-                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_pac_"
-                            queryParameters = "?basin=epac"
-                        case .atlantic:
-                            outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_atl_"
-                            queryParameters = String() // No parameters
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Picker("Picker", selection: $currentTab) {
+                            Text("Central Pacific").tag(Tab.centralPacific)
+                            Text("Eastern Pacific").tag(Tab.easternPacific)
+                            Text("Atlantic").tag(Tab.atlantic)
                         }
-                        hurricanesHelper.getProductText(resource: "https://www.nhc.noaa.gov/gtwo.php" + queryParameters) { text in
-                            Task {
-                                outlookText = text
+                        .onChange(of: currentTab) {
+                            switch currentTab {
+                            case .centralPacific:
+                                outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_cpac_"
+                                queryParameters = "?basin=cpac"
+                            case .easternPacific:
+                                outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_pac_"
+                                queryParameters = "?basin=epac"
+                            case .atlantic:
+                                outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_atl_"
+                                queryParameters = String() // No parameters
+                            }
+                            hurricanesHelper.getProductText(resource: "https://www.nhc.noaa.gov/gtwo.php" + queryParameters) { text in
+                                Task {
+                                    outlookText = text
+                                }
                             }
                         }
+                    } label: {
+                        Text(currentTab.rawValue)
                     }
                 }
             }
@@ -135,5 +138,6 @@ struct HurricanesView: View {
 }
 
 #Preview {
-    HurricanesView()
+    //HurricanesView()
+    ContentView()
 }
