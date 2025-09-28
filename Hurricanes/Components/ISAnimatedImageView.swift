@@ -1,17 +1,22 @@
 //
-//  PFAnimatedImage.swift
+//  ISAnimatedImageView.swift
 //  Hurricanes
 //
 
 import SwiftUI
 
+/// Returns a `UIView` based on `ISAnimatedImageView` and animation image data as `PFAnimatedImage`.
+///
 /// - Warning: Do not use this method for loading animated images as it is private. Consider other public alternatives.
-struct PFAnimatedImage: UIViewRepresentable {
+///
+/// Both view and class originate from private framework `PhotosPlayer`.
+///
+/// - Parameters:
+///   - data: The animated image data to use.
+///
+/// - Returns: An infinitely looping animated image as a `UIView`.
+struct ISAnimatedImageView: UIViewRepresentable {
     let data: Data
-    
-    init(data: Data) {
-        self.data = data
-    }
     
     func makeUIView(context: Context) -> UIView {
         let path = "/System/Library/PrivateFrameworks/PhotosPlayer.framework/PhotosPlayer"
@@ -34,7 +39,7 @@ struct PFAnimatedImage: UIViewRepresentable {
 }
 
 /// - Warning: Do not use this method for loading animated images as it is private. Consider other public alternatives.
-struct PFAnimatedImageLoader: View {
+struct ISAnimatedImageViewLoader: View {
     let link: String
     @State private var data: Data? = nil
     @State private var isLoading = true
@@ -42,16 +47,16 @@ struct PFAnimatedImageLoader: View {
     var body: some View {
         Group {
             if let data = data {
-                PFAnimatedImage(data: data)
+                ISAnimatedImageView(data: data)
             } else if isLoading {
                 ProgressView("Loading…")
                     .frame(width: 100)
+                    .task {
+                        await loadData()
+                    }
             } else {
                 ContentUnavailableView("Failed to load", systemImage: "exclamationmark.triangle.fill")
             }
-        }
-        .task {
-            await loadData()
         }
     }
     
