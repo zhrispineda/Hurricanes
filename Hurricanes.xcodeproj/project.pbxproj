@@ -51,6 +51,11 @@
 			path = HurricanesTests;
 			sourceTree = "<group>";
 		};
+		83E1CB932EA2B8F6002AF831 /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +87,7 @@
 		8387F0CB2D04C1C500B26DD8 = {
 			isa = PBXGroup;
 			children = (
+				83E1CB932EA2B8F6002AF831 /* Assets */,
 				836744922D05517F00167925 /* README.md */,
 				8387F0D62D04C1C500B26DD8 /* Hurricanes */,
 				83B3F3452D0538870038F77A /* HurricanesTests */,
@@ -140,6 +146,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				8387F0D62D04C1C500B26DD8 /* Hurricanes */,
+				83E1CB932EA2B8F6002AF831 /* Assets */,
 			);
 			name = Hurricanes;
 			packageProductDependencies = (
