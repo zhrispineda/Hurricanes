@@ -16,7 +16,7 @@ struct SectionHeaderStyle: ViewModifier {
         content
             .font(.subheadline)
             .fontWeight(.semibold)
-            .listRowInsets(.init(top: 0, leading: 1, bottom: 0, trailing: 1))
+            .listRowInsets(.init(top: 5, leading: 5, bottom: 5, trailing: 5))
             .textCase(.none)
     }
 }
