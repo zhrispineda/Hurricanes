@@ -10,10 +10,9 @@ import os
 import SwiftSoup
 
 class HurricanesHelper {
-    // Variables
     let logger = Logger(subsystem: "Hurricanes", category: "ContentView")
     
-    // Returns data within the textproduct class based on the NHC website
+    /// Returns data within the textproduct class based on the NHC website
     func getProductText(resource: String, completion: @escaping (String) -> Void) {
         guard let url = URL(string: resource) else {
             logger.error("URL is invalid.")
@@ -44,7 +43,7 @@ class HurricanesHelper {
         .resume()
     }
     
-    // Returns a UIImage from a URL
+    /// Returns a UIImage from a URL
     func getImage(from urlString: String) async -> UIImage? {
         guard let url = URL(string: urlString) else { return nil }
         

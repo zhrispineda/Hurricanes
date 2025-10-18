@@ -30,23 +30,9 @@ struct HurricanesView: View {
                     AsyncImage(url: URL(string: outlookImage + "2d0.png")) { status in
                         switch status {
                         case .failure:
-                            Text("Could not get \(currentTab.rawValue) Outlook image.")
+                            ContentUnavailableView("Failed to load", systemImage: "exclamationmark.triangle.fill")
                         case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 15.0))
-                                .contextMenu {
-                                    Button {
-                                        Task {
-                                            if let uiImage = await hurricanesHelper.getImage(from: outlookImage + "2d0.png") {
-                                                UIPasteboard.general.image = uiImage
-                                            }
-                                        }
-                                    } label: {
-                                        Label("Copy", systemImage: "doc.on.doc")
-                                    }
-                                }
+                            OutlookView(image: image, url: outlookImage)
                         default:
                             ProgressView()
                         }
@@ -58,23 +44,9 @@ struct HurricanesView: View {
                     AsyncImage(url: URL(string: outlookImage + "7d0.png")) { status in
                         switch status {
                         case .failure:
-                            Text("Could not get \(currentTab.rawValue) Outlook image.")
+                            ContentUnavailableView("Failed to load", systemImage: "exclamationmark.triangle.fill")
                         case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 15.0))
-                                .contextMenu {
-                                    Button {
-                                        Task {
-                                            if let uiImage = await hurricanesHelper.getImage(from: outlookImage + "7d0.png") {
-                                                UIPasteboard.general.image = uiImage
-                                            }
-                                        }
-                                    } label: {
-                                        Label("Copy", systemImage: "doc.on.doc")
-                                    }
-                                }
+                            OutlookView(image: image, url: outlookImage)
                         default:
                             ProgressView()
                         }
@@ -137,7 +109,30 @@ struct HurricanesView: View {
     }
 }
 
+struct OutlookView: View {
+    let hurricanesHelper = HurricanesHelper()
+    let image: Image
+    let url: String
+    
+    var body: some View {
+        image
+            .resizable()
+            .scaledToFit()
+            .clipShape(RoundedRectangle(cornerRadius: 15.0))
+            .contextMenu {
+                Button {
+                    Task {
+                        if let uiImage = await hurricanesHelper.getImage(from: url + "2d0.png") {
+                            UIPasteboard.general.image = uiImage
+                        }
+                    }
+                } label: {
+                    Label("Copy", systemImage: "doc.on.doc")
+                }
+            }
+    }
+}
+
 #Preview {
-    //HurricanesView()
     ContentView()
 }
