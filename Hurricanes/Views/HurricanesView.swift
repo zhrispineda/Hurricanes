@@ -10,8 +10,9 @@ struct HurricanesView: View {
     // Variables
     @State private var currentTab: Tab = .atlantic
     @State private var outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_atl_"
-    @State private var queryParameters = String()
-    @State private var outlookText = "Loading..."
+    @State private var queryParameters = ""
+    @State private var outlookText = "Loading…"
+    @State private var outlookExpanded = true
     let logger = Logger(subsystem: "Hurricanes", category: "HurricanesView")
     let hurricanesHelper = HurricanesHelper()
     
@@ -82,7 +83,7 @@ struct HurricanesView: View {
                 
                 // Outlook Text
                 Section {
-                    DisclosureGroup("\(currentTab.rawValue) Tropical Weather Outlook") {
+                    DisclosureGroup("\(currentTab.rawValue) Tropical Weather Outlook", isExpanded: $outlookExpanded) {
                         Text(outlookText)
                             .font(.footnote)
                             .textSelection(.enabled)
