@@ -7,7 +7,6 @@ import SwiftUI
 import os
 
 struct HurricanesView: View {
-    // Variables
     @State private var currentTab: Tab = .atlantic
     @State private var outlookImage = "https://www.nhc.noaa.gov/xgtwo/two_atl_"
     @State private var queryParameters = ""
@@ -27,30 +26,12 @@ struct HurricanesView: View {
             List {
                 // Two-Day Weather Outlook
                 Section("Two-Day Weather Outlook") {
-                    AsyncImage(url: URL(string: outlookImage + "2d0.png")) { status in
-                        switch status {
-                        case .failure:
-                            ContentUnavailableView("Failed to load", systemImage: "exclamationmark.triangle.fill")
-                        case .success(let image):
-                            OutlookView(image: image, url: outlookImage)
-                        default:
-                            ProgressView()
-                        }
-                    }
+                    OutlookView(image: $outlookImage, url: outlookImage, specifier: "2d0.png")
                 }
                 
                 // Seven-Day Weather Outlook
                 Section("Seven-Day Weather Outlook") {
-                    AsyncImage(url: URL(string: outlookImage + "7d0.png")) { status in
-                        switch status {
-                        case .failure:
-                            ContentUnavailableView("Failed to load", systemImage: "exclamationmark.triangle.fill")
-                        case .success(let image):
-                            OutlookView(image: image, url: outlookImage)
-                        default:
-                            ProgressView()
-                        }
-                    }
+                    OutlookView(image: $outlookImage, url: outlookImage, specifier: "7d0.png")
                 }
                 
                 // Outlook Text
@@ -109,27 +90,38 @@ struct HurricanesView: View {
     }
 }
 
+/// Returns a View that displays a graphic from the NHC website
 struct OutlookView: View {
     let hurricanesHelper = HurricanesHelper()
-    let image: Image
+    @Binding var image: String
     let url: String
+    let specifier: String
     
     var body: some View {
-        image
-            .resizable()
-            .scaledToFit()
-            .clipShape(RoundedRectangle(cornerRadius: 15.0))
-            .contextMenu {
-                Button {
-                    Task {
-                        if let uiImage = await hurricanesHelper.getImage(from: url + "2d0.png") {
-                            UIPasteboard.general.image = uiImage
+        AsyncImage(url: URL(string: image + specifier)) { status in
+            switch status {
+            case .failure:
+                ContentUnavailableView("Failed to load", systemImage: "exclamationmark.triangle.fill")
+            case .success(let image):
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
+                    .contextMenu {
+                        Button {
+                            Task {
+                                if let uiImage = await hurricanesHelper.getImage(from: url + specifier) {
+                                    UIPasteboard.general.image = uiImage
+                                }
+                            }
+                        } label: {
+                            Label("Copy", systemImage: "doc.on.doc")
                         }
                     }
-                } label: {
-                    Label("Copy", systemImage: "doc.on.doc")
-                }
+            default:
+                ProgressView()
             }
+        }
     }
 }
 
