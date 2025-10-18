@@ -23,7 +23,6 @@ struct InformationView: View {
                 } footer: {
                     Text("[Source: NOAA](https://oceanservice.noaa.gov/facts/hurricane.html)")
                 }
-                .sectionHeaderStyle()
                 
                 // Saffir-Simpson Hurricane Wind Scale Section
                 Section {
@@ -65,7 +64,6 @@ struct InformationView: View {
                 } footer: {
                     Text("[Source: NOAA](https://www.nhc.noaa.gov/aboutsshws.php)")
                 }
-                .sectionHeaderStyle()
             }
             .navigationTitle("Information")
         }

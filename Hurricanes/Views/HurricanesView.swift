@@ -34,6 +34,7 @@ struct HurricanesView: View {
                             image
                                 .resizable()
                                 .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 15.0))
                                 .contextMenu {
                                     Button {
                                         Task {
@@ -50,7 +51,6 @@ struct HurricanesView: View {
                         }
                     }
                 }
-                .sectionHeaderStyle()
                 
                 // Seven-Day Weather Outlook
                 Section("Seven-Day Weather Outlook") {
@@ -62,6 +62,7 @@ struct HurricanesView: View {
                             image
                                 .resizable()
                                 .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 15.0))
                                 .contextMenu {
                                     Button {
                                         Task {
@@ -78,7 +79,6 @@ struct HurricanesView: View {
                         }
                     }
                 }
-                .sectionHeaderStyle()
                 
                 // Outlook Text
                 Section {
@@ -89,7 +89,6 @@ struct HurricanesView: View {
                     }
                 } header: {
                     Text("Outlook")
-                        .sectionHeaderStyle()
                 }
             }
             .navigationTitle("Hurricanes")
